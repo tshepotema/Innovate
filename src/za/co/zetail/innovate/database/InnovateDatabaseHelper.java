@@ -17,6 +17,7 @@ public class InnovateDatabaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		IdeasTable.onCreate(db);
 		MyIdeasTable.onCreate(db);
+		UsersTable.onCreate(db);
 	}
 
 	//called during the upgrade of the database
@@ -24,6 +25,7 @@ public class InnovateDatabaseHelper extends SQLiteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		IdeasTable.onUpgrade(db, oldVersion, newVersion);
 		MyIdeasTable.onUpgrade(db, oldVersion, newVersion);
+		UsersTable.onUpgrade(db, oldVersion, newVersion);
 	}
 
 }

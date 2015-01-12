@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/ivProfilePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="17dp"
+        android:contentDescription="@string/img_description"
+        android:src="@drawable/photoholder" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ivProfilePhoto"
+        android:layout_below="@+id/ivProfilePhoto"
+        android:layout_marginTop="28dp"
+        android:text="@string/username" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvUsername"
+        android:layout_below="@+id/tvUsername"
+        android:layout_marginTop="15dp"
+        android:text="@string/email" />
+
+    <TextView
+        android:id="@+id/tvPointsEarned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvEmail"
+        android:layout_below="@+id/tvEmail"
+        android:layout_marginTop="26dp"
+        android:text="@string/points_earned" />
+
+    <TextView
+        android:id="@+id/tvPointsRedeemed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvPointsEarned"
+        android:layout_below="@+id/tvPointsEarned"
+        android:layout_marginTop="18dp"
+        android:text="@string/points_redeemed" />
+
+    <TextView
+        android:id="@+id/tvPointsAvailable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvPointsRedeemed"
+        android:layout_below="@+id/tvPointsRedeemed"
+        android:layout_marginTop="18dp"
+        android:text="@string/points_available" />
+
+</RelativeLayout>

@@ -44,5 +44,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:text="@string/login" />
+
+    <TextView
+        android:id="@+id/tvStatusMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/etUsername"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp"
+        android:textColor="#ff0000"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
     
 </RelativeLayout>

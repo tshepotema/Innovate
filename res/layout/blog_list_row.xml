@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ideas_list_selector"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <LinearLayout
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip"
+        android:background="@drawable/image_bg"
+        android:padding="3dip" >
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:contentDescription="@string/img_description"
+            android:src="@drawable/photoholder" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvBlogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="@string/blog_title"
+        android:textColor="#040404"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvBlogTitle"
+        android:layout_marginTop="1dip"
+        android:layout_toLeftOf="@+id/img_arrow"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="@string/description"
+        android:textColor="#343434"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/img_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/right_arrow"
+        android:src="@drawable/arrow" />
+
+    <TextView
+        android:id="@+id/tvUpdated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvDescription"
+        android:layout_below="@+id/tvDescription"
+        android:text="@string/last_updated"
+        android:textColor="#10bcc9"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvUpdated"
+        android:layout_alignBottom="@+id/tvUpdated"
+        android:layout_alignRight="@+id/tvDescription"
+        android:text="@string/username"
+        android:textColor="#10bcc9"
+        android:textSize="13sp" />
+    
+</RelativeLayout>

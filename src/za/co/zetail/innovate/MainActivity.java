@@ -2,22 +2,23 @@ package za.co.zetail.innovate;
 
 import java.util.Locale;
 
-import android.app.ActionBar.Tab;
-import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.support.v13.app.FragmentPagerAdapter;
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MainActivity extends Activity implements ActionBar.TabListener {
+public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -26,9 +27,11 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	 * becomes too memory intensive, it may be best to switch to a
 	 * {@link android.support.v13.app.FragmentStatePagerAdapter}.
 	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
+	AppSectionsPagerAdapter mAppSectionsPagerAdapter;
 	
-	String[] mainSections = {"New Ideas", "My Ideas", "Blogs"};
+	static String[] mainSections = {"New Ideas", "Inspiration", "Rewards"};
+	
+	public static Context appContext;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -39,10 +42,12 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		appContext = getApplicationContext();
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the activity.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+		mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -55,7 +60,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 		
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
-		mViewPager.setAdapter(mSectionsPagerAdapter);
+		mViewPager.setAdapter(mAppSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(mainSections.length);
         mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -67,12 +72,12 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         });
 
         // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+        for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
             // Create a tab with text corresponding to the page title defined by the adapter.
             // Also specify this Activity object, which implements the TabListener interface, as the listener for when this tab is selected.
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+                            .setText(mAppSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }		
 	}
@@ -93,6 +98,14 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		if (id == R.id.action_new_idea) {
+			return true;
+		}
+		if (id == R.id.action_profile) {
+			Intent openProfile = new Intent(MainActivity.this, Profile.class);
+			startActivity(openProfile);
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -100,19 +113,28 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
-		public SectionsPagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
+        public AppSectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
 
-		@Override
-		public Fragment getItem(int position) {
-			// getItem is called to instantiate the fragment for the given page.
-			// Return a PlaceholderFragment (defined as a static inner class
-			// below).
-			return PlaceholderFragment.newInstance(position + 1);
-		}
+        @Override
+        public Fragment getItem(int i) {
+            switch (i) {
+                case 0:
+                	//list photos uploaded to web
+                    return new NewIdeasFragment(appContext);
+                case 1:
+                	//list photos uploaded to web
+                    return new BlogsFragment(appContext);
+                case 2:
+                	//list photos uploaded to web
+                    return new RewardsFragment(appContext);
+                default:
+                    return new NewIdeasFragment(appContext);
+        	}
+        }
 
 		@Override
 		public int getCount() {
@@ -160,21 +182,19 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	}
 
 	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		
+	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        // When the given tab is selected, switch to the corresponding page in the ViewPager.
+        mViewPager.setCurrentItem(tab.getPosition());		
 	}
 
 	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		
+	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+		// TODO Auto-generated method stub		
 	}
 
 	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		
+	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+		// TODO Auto-generated method stub		
 	}
 
 }
